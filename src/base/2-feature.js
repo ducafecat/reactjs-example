@@ -1,17 +1,6 @@
 import React, {Component} from 'react'
+import Card from '../common/card'
 import './base.css'
-
-// 卡片
-const Card = props => {
-  let title = props.title
-  let children = props.children
-  return (
-    <div>
-      <h2>{title}</h2>
-      {children}
-    </div>
-  )
-}
 
 // JSX 属性
 const ElementProps = () => (
@@ -135,17 +124,22 @@ class InputView extends Component {
     super(props)
     this.state = {value: ''}
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   handleChange(e) {
     this.setState({value: e.target.value})
   }
+  handleSubmit(e) {
+    e.preventDefault() // 阻止事件
+  }
   render() {
     return (
-      <div style={{display:'inline-flex'}}>
+      <form onSubmit={this.handleSubmit} style={{display:'inline-flex'}}>
         <input type="text" value={this.state.value} onChange={this.handleChange} />
         <textarea value={this.state.value} onChange={this.handleChange} />
+        <input type="submit" value="提交" />
         <p>{this.state.value}</p>
-      </div>
+      </form>
     )
   }
 }

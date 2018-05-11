@@ -1,7 +1,9 @@
 import BaseIntroducing from './../base/1-introducing'
 import BaseFeature from './../base/2-feature'
+import BaseRender from './../base/3-render'
+import BaseComponent from './../base/4-component'
 
-let BaseRender, BaseComponent, BaseRouter, BaseRedux, BaseFetch
+let BaseRouter, BaseRedux, BaseFetch
 
 const navBase = {
   path: '',
@@ -14,7 +16,7 @@ const navBase = {
     },
     {
       path: '/basic/feature',
-      title: '基础特性 JSX、Props、State、Event、Lifecycle',
+      title: '基础特性 JSX、Props、State、Lifecycle、Event',
       main: BaseFeature
     },
     {
