@@ -5,26 +5,47 @@ import Card from '../common/card'
 class InputView extends Component {
   constructor(props) {
     super(props)
-    this.state = {form: props.form} // 父容器 state
-    this.handleSync = props.handleSync // 父容器 sync
+    this.form = props.form // 父容器 state.form
+    this.sync = props.sync // 父容器 sync
     this.handleChange = this.handleChange.bind(this)
   }
   handleChange(e) {
     let name = e.target.attributes.name.value
     let value = e.target.value
-    this.setState(state => (state.form[name] = value))
-    this.handleSync({name, value})
+    this.sync({name, value})
   }
   render() {
     return (
-      <div>
-        <input
-          name="input"
-          type="text"
-          value={this.state.form.input}
-          onChange={this.handleChange}
-        />
-      </div>
+      <ul>
+        <li>
+          <input
+            name="input"
+            type="text"
+            value={this.form.input}
+            onChange={this.handleChange}
+          />
+        </li>
+        <li>
+          <textarea
+            name="textarea"
+            value={this.form.textarea}
+            onChange={this.handleChange}
+          />
+        </li>
+        <li>
+          <select
+            name="select"
+            value={this.form.select}
+            onChange={this.handleChange}
+          >
+            <option value="">---</option>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </li>
+      </ul>
     )
   }
 }
@@ -55,16 +76,20 @@ function ListView(props) {
 class ContainerView extends Component {
   constructor(props) {
     super(props)
-    this.state = {form: {input: '1', textarea: '2'}}
+    this.state = {form: {input: '', textarea: '', select: ''}}
     this.handleSync = this.handleSync.bind(this)
   }
   handleSync(item) {
-    this.setState(state => (state.form[item.name] = item.value))
+    this.setState((prevState, props) => {
+      let form = prevState.form
+      form[item.name] = item.value
+      return {form}
+    })
   }
   render() {
     return (
       <div>
-        <InputView handleSync={this.handleSync} form={this.state.form} />
+        <InputView sync={this.handleSync} form={this.state.form} />
         <ListView form={this.state.form} />
       </div>
     )
