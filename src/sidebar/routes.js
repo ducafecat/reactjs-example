@@ -2,8 +2,9 @@ import BaseIntroducing from './../base/1-introducing'
 import BaseFeature from './../base/2-feature'
 import BaseRender from './../base/3-render'
 import BaseComponent from './../base/4-component'
+import BaseRouter from './../base/5-router'
 
-let BaseRouter, BaseRedux, BaseFetch
+let BaseRedux, BaseFetch
 
 const navBase = {
   path: '',
