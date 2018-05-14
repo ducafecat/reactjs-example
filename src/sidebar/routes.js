@@ -3,8 +3,9 @@ import BaseFeature from './../base/2-feature'
 import BaseRender from './../base/3-render'
 import BaseComponent from './../base/4-component'
 import BaseRouter from './../base/5-router'
+import BaseRedux from './../base/6-redux'
 
-let BaseRedux, BaseFetch
+let BaseFetch, BaseNull
 
 const navBase = {
   path: '',
@@ -44,7 +45,17 @@ const navBase = {
       path: '/basic/redux',
       title: '数据请求 fetch',
       main: BaseFetch
-    }
+    },
+    {
+      path: '/basic/prop-types',
+      title: '属性类型检查 prop-types',
+      main: BaseNull
+    },
+    {
+      path: '/basic/flow',
+      title: '静态类型检查 Flow',
+      main: BaseNull
+    },
   ]
 }
 const routes = [navBase]

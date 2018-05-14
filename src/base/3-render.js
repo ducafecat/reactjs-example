@@ -53,10 +53,14 @@ function ListsView(props) {
   let datas = props.data
   return (
     <ol>
-      {datas.map((item, index) => 
+      {datas.map((item, index) => (
         <li key={index.toString()}>
-          <a href={item.url} target="_blank">{item.title}</a> --- <small>by {item.by}</small>
-        </li>)}
+          <a href={item.url} target="_blank">
+            {item.title}
+          </a>{' '}
+          --- <small>by {item.by}</small>
+        </li>
+      ))}
     </ol>
   )
 }
@@ -67,9 +71,21 @@ function NullView(props) {
   if (isNull) {
     return null
   }
-  return (
-    <div>组件123</div>
-  )
+  return <div>组件123</div>
+}
+
+// ref引用
+class RefInputView extends Component {
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef()
+  }
+  render() {
+    return <input type="text" ref={this.inputRef} />
+  }
+  componentDidMount() {
+    this.inputRef.current.focus()
+  }
 }
 
 // 容器
@@ -92,6 +108,9 @@ class Render extends Component {
         </Card>
         <Card title="空组件">
           <NullView isNull={true} />
+        </Card>
+        <Card title="ref引用">
+          <RefInputView />
         </Card>
       </div>
     )
