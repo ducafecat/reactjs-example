@@ -4,6 +4,7 @@ import RouterBaseView from './5-1-routerBase'
 import RouterParamsView from './5-2-routerParams'
 import RouterNoMatchView from './5-3-routerNoMatch'
 import RouterTransitionsView from './5-4-routerTransitions'
+import RouterRedirectView from './5-5-routerRedirect'
 
 const View = () => (
   <div>
@@ -18,6 +19,9 @@ const View = () => (
     </Card>
     <Card title="动画切换">
       <RouterTransitionsView />
+    </Card>
+    <Card title="路由跳转">
+      <RouterRedirectView />
     </Card>
   </div>
 )

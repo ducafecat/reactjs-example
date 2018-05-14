@@ -29,18 +29,10 @@ const AnimationExample = () => (
 
           <div style={styles.content}>
             <TransitionGroup>
-              {/* no different than other usage of
-                CSSTransition, just make sure to pass
-                `location` to `Switch` so it can match
-                the old location as it animates out
-            */}
               <CSSTransition key={location.key} classNames="fade" timeout={300}>
                 <Switch location={location}>
                   <Route exact path="/hsl/:h/:s/:l" component={HSL} />
                   <Route exact path="/rgb/:r/:g/:b" component={RGB} />
-                  {/* Without this `Route`, we would get errors during
-                    the initial transition from `/` to `/hsl/10/90/50`
-                */}
                   <Route render={() => <div>Not Found</div>} />
                 </Switch>
               </CSSTransition>
@@ -86,17 +78,15 @@ const styles = {}
 
 styles.fill = {
   position: 'relative',
-  // left: 0,
-  // right: 0,
-  // top: 0,
-  // bottom: 0,
-  height: '120px'
+  height: '200px',
+  width: '500px'
 }
 
 styles.content = {
   ...styles.fill,
   top: '40px',
-  textAlign: 'center'
+  textAlign: 'center',
+  height: '120px'
 }
 
 styles.nav = {
@@ -117,17 +107,17 @@ styles.navItem = {
 }
 
 styles.hsl = {
-  ...styles.fill,
   color: 'white',
   paddingTop: '20px',
-  fontSize: '30px'
+  fontSize: '30px',
+  height: '120px'
 }
 
 styles.rgb = {
-  ...styles.fill,
   color: 'white',
   paddingTop: '20px',
-  fontSize: '30px'
+  fontSize: '30px',
+  height: '120px'
 }
 
 export default AnimationExample

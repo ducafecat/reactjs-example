@@ -2,15 +2,9 @@ import React, {Component} from 'react'
 // import {HashRouter as Router, Route, Link} from 'react-router-dom'
 import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom'
 
-const Home = () => (
+const Login = () => (
   <div>
-    <h2>首页</h2>
-  </div>
-)
-
-const About = () => (
-  <div>
-    <h2>关于</h2>
+    <h2>自动跳转了 用户登录</h2>
   </div>
 )
 
@@ -21,16 +15,13 @@ class routerBase extends Component {
         <div>
           <ul>
             <li>
-              <Link to="/">首页</Link>
-            </li>
-            <li>
-              <Link to="/about">关于</Link>
+              <Link to="/dashboard">用户后台</Link>
             </li>
           </ul>
 
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
+            <Route exact path="/login" component={Login} />
+            <Redirect from="/dashboard" to="/login" />
           </Switch>
         </div>
       </Router>
