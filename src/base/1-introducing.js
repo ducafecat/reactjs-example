@@ -8,24 +8,18 @@ let Element2 = () => <h2>组件2 - 变量</h2>
 
 // es5 函数
 function Element3() {
-  return (
-    <h2>组件3 - es5 函数</h2>
-  )
+  return <h2>组件3 - es5 函数</h2>
 }
 
 // es6 箭头函数
 let Element4 = () => {
-  return (
-    <h2>组件4 - es6 箭头函数</h2>
-  )
+  return <h2>组件4 - es6 箭头函数</h2>
 }
 
 // React.Component 类
 class Element5 extends Component {
   render() {
-    return (
-      <h2>组件5 - React.Component 类对象</h2>
-    )
+    return <h2>组件5 - React.Component 类对象</h2>
   }
 }
 

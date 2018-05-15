@@ -4,8 +4,9 @@ import BaseRender from './../base/3-render'
 import BaseComponent from './../base/4-component'
 import BaseRouter from './../base/5-router'
 import BaseRedux from './../base/6-redux'
+import BaseRequest from './../base/7-request'
 
-let BaseFetch, BaseNull
+let BaseNull
 
 const navBase = {
   path: '',
@@ -42,9 +43,9 @@ const navBase = {
       main: BaseRedux
     },
     {
-      path: '/basic/redux',
+      path: '/basic/fetch',
       title: '数据请求 fetch',
-      main: BaseFetch
+      main: BaseRequest
     },
     {
       path: '/basic/prop-types',

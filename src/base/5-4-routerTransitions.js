@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 import './fade.css'
 
-const AnimationExample = () => (
+const RouterView = () => (
   <Router>
     <Route
       render={({location}) => (
@@ -120,4 +120,4 @@ styles.rgb = {
   height: '120px'
 }
 
-export default AnimationExample
+export default RouterView

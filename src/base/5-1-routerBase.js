@@ -14,7 +14,7 @@ const About = () => (
   </div>
 )
 
-class routerBase extends Component {
+class RouterView extends Component {
   render() {
     return (
       <Router>
@@ -38,4 +38,4 @@ class routerBase extends Component {
   }
 }
 
-export default routerBase
+export default RouterView

@@ -85,6 +85,7 @@ class RefInputView extends Component {
   }
   componentDidMount() {
     this.inputRef.current.focus()
+    this.inputRef.current.value = '123'
   }
 }
 
@@ -93,7 +94,7 @@ class Render extends Component {
   render() {
     return (
       <div>
-        <Card title="并行">
+        <Card title="并列">
           <UserView />
           <GuestView />
         </Card>

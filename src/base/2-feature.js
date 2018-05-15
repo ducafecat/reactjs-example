@@ -131,6 +131,7 @@ class InputView extends Component {
   }
   handleSubmit(e) {
     e.preventDefault() // 阻止事件
+    console.log('handleSubmit')
   }
   render() {
     return (
