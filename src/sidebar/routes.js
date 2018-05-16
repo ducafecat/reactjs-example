@@ -5,6 +5,7 @@ import BaseComponent from './../base/4-component'
 import BaseRouter from './../base/5-router'
 import BaseRedux from './../base/6-redux'
 import BaseRequest from './../base/7-request'
+import BasePropTypes from './../base/8-propTypes'
 
 let BaseNull
 
@@ -50,7 +51,7 @@ const navBase = {
     {
       path: '/basic/prop-types',
       title: '属性类型检查 prop-types',
-      main: BaseNull
+      main: BasePropTypes
     },
     {
       path: '/basic/flow',
