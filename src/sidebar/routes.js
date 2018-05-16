@@ -6,8 +6,9 @@ import BaseRouter from './../base/5-router'
 import BaseRedux from './../base/6-redux'
 import BaseRequest from './../base/7-request'
 import BasePropTypes from './../base/8-propTypes'
+// import BaseFlow from './../base/9-flow'
 
-let BaseNull
+// let BaseNull
 
 const navBase = {
   path: '',
@@ -53,11 +54,11 @@ const navBase = {
       title: '属性类型检查 prop-types',
       main: BasePropTypes
     },
-    {
-      path: '/basic/flow',
-      title: '静态类型检查 Flow',
-      main: BaseNull
-    },
+    // {
+    //   path: '/basic/flow',
+    //   title: '静态类型检查 Flow',
+    //   main: BaseFlow
+    // },
   ]
 }
 const routes = [navBase]
