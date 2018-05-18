@@ -135,8 +135,12 @@ class InputView extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit} style={{display:'inline-flex'}}>
-        <input type="text" value={this.state.value} onChange={this.handleChange} />
+      <form onSubmit={this.handleSubmit} style={{display: 'inline-flex'}}>
+        <input
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
         <input type="submit" value="提交" />
         <p>{this.state.value}</p>
       </form>

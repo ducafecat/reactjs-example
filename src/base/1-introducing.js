@@ -23,6 +23,13 @@ class Element5 extends Component {
   }
 }
 
+// es6 class 组件 , 标准 class 不能作为组件使用
+// class Element6 {
+//   render() {
+//     return <h2>组件6 - es6 class 类对象</h2>
+//   }
+// }
+
 class Introducing extends Component {
   render() {
     return (
@@ -33,6 +40,7 @@ class Introducing extends Component {
         <Element3 />
         <Element4 />
         <Element5 />
+        {/* <Element6 /> */}
       </div>
     )
   }
