@@ -129,6 +129,10 @@ class InputView extends Component {
   handleChange(e) {
     this.setState({value: e.target.value})
   }
+  handleChangeVal(val, e) {
+    console.log(val)
+    this.setState({value: e.target.value})
+  }
   handleSubmit(e) {
     e.preventDefault() // 阻止事件
     console.log('handleSubmit')
@@ -140,6 +144,11 @@ class InputView extends Component {
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
+        />
+        <input
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChangeVal.bind(this, '123')}
         />
         <input type="submit" value="提交" />
         <p>{this.state.value}</p>
