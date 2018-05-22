@@ -65,6 +65,32 @@ function ListsView(props) {
   )
 }
 
+// 嵌套循环
+let types = ['推荐', '热门', '最新']
+function NestListsView(props) {
+  let datas = props.data
+  let types = props.types
+  return (
+    <ul>
+      {types.map((item, index) => (
+        <li key={index.toString()}>
+          {item}
+          <ol>
+            {datas.map((item, index) => (
+              <li key={index.toString()}>
+                <a href={item.url} target="_blank">
+                  {item.title}
+                </a>{' '}
+                --- <small>by {item.by}</small>
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 // 空组件
 function NullView(props) {
   let isNull = props.isNull
@@ -89,6 +115,13 @@ class RefInputView extends Component {
   }
 }
 
+// React.createElement
+function CreateElement(props) {
+  let toWhat = props.toWhat
+  let ele = React.createElement('div', null, `Hello ${toWhat}`)
+  return ele
+}
+
 // 容器
 class Render extends Component {
   render() {
@@ -107,11 +140,17 @@ class Render extends Component {
         <Card title="循环">
           <ListsView data={blogs} />
         </Card>
+        <Card title="嵌套循环">
+          <NestListsView types={types} data={blogs} />
+        </Card>
         <Card title="空组件">
           <NullView isNull={true} />
         </Card>
         <Card title="ref引用">
           <RefInputView />
+        </Card>
+        <Card title="React.createElement">
+          <CreateElement toWhat="你好" />
         </Card>
       </div>
     )
