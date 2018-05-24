@@ -9,70 +9,7 @@ import {
 } from 'react-router-dom'
 import './fade.css'
 
-const RouterView = () => (
-  <Router>
-    <Route
-      render={({location}) => (
-        <div style={styles.fill}>
-          <Route
-            exact
-            path="/"
-            render={() => <Redirect to="/hsl/10/90/50" />}
-          />
-
-          <ul style={styles.nav}>
-            <NavLink to="/hsl/10/90/50">Red</NavLink>
-            <NavLink to="/hsl/120/100/40">Green</NavLink>
-            <NavLink to="/rgb/33/150/243">Blue</NavLink>
-            <NavLink to="/rgb/240/98/146">Pink</NavLink>
-          </ul>
-
-          <div style={styles.content}>
-            <TransitionGroup>
-              <CSSTransition key={location.key} classNames="fade" timeout={300}>
-                <Switch location={location}>
-                  <Route exact path="/hsl/:h/:s/:l" component={HSL} />
-                  <Route exact path="/rgb/:r/:g/:b" component={RGB} />
-                  <Route render={() => <div>Not Found</div>} />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
-          </div>
-        </div>
-      )}
-    />
-  </Router>
-)
-
-const NavLink = props => (
-  <li style={styles.navItem}>
-    <Link {...props} style={{color: 'inherit'}} />
-  </li>
-)
-
-const HSL = ({match: {params}}) => (
-  <div
-    style={{
-      ...styles.fill,
-      ...styles.hsl,
-      background: `hsl(${params.h}, ${params.s}%, ${params.l}%)`
-    }}
-  >
-    hsl({params.h}, {params.s}%, {params.l}%)
-  </div>
-)
-
-const RGB = ({match: {params}}) => (
-  <div
-    style={{
-      ...styles.fill,
-      ...styles.rgb,
-      background: `rgb(${params.r}, ${params.g}, ${params.b})`
-    }}
-  >
-    rgb({params.r}, {params.g}, {params.b})
-  </div>
-)
+// 定义样式
 
 const styles = {}
 
@@ -119,5 +56,78 @@ styles.rgb = {
   fontSize: '30px',
   height: '120px'
 }
+
+// 导航链接
+const NavLink = props => (
+  <li style={styles.navItem}>
+    <Link {...props} style={{color: 'inherit'}} />
+  </li>
+)
+
+// 切换区域 A
+const HSL = ({match: {params}}) => (
+  <div
+    style={{
+      ...styles.fill,
+      ...styles.hsl,
+      background: `hsl(${params.h}, ${params.s}%, ${params.l}%)`
+    }}
+  >
+    hsl({params.h}, {params.s}%, {params.l}%)
+  </div>
+)
+
+// 切换区域 B
+const RGB = ({match: {params}}) => (
+  <div
+    style={{
+      ...styles.fill,
+      ...styles.rgb,
+      background: `rgb(${params.r}, ${params.g}, ${params.b})`
+    }}
+  >
+    rgb({params.r}, {params.g}, {params.b})
+  </div>
+)
+
+// 容器
+const RouterView = () => (
+  <Router>
+    <Route
+      render={({location}) => (
+        <div style={styles.fill}>
+          <Route
+            exact
+            path="/"
+            render={() => <Redirect to="/hsl/10/90/50" />}
+          />
+
+          <ul style={styles.nav}>
+            <NavLink to="/hsl/10/90/50">Red</NavLink>
+            <NavLink to="/hsl/120/100/40">Green</NavLink>
+            <NavLink to="/rgb/33/150/243">Blue</NavLink>
+            <NavLink to="/rgb/240/98/146">Pink</NavLink>
+          </ul>
+
+          <div style={styles.content}>
+            <TransitionGroup>
+              <CSSTransition key={location.key} classNames="fade" timeout={300}>
+                <Switch location={location}>
+                  <Route exact path="/hsl/:h/:s/:l" component={HSL} />
+                  <Route exact path="/rgb/:r/:g/:b" component={RGB} />
+                  <Route render={() => <div>Not Found</div>} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          </div>
+        </div>
+      )}
+    />
+  </Router>
+)
+
+
+
+
 
 export default RouterView
