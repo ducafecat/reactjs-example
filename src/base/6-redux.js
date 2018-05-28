@@ -5,7 +5,10 @@ import TodoApp from './todos/components/App'
 import todoReducer from './todos/redux/reducers'
 import Card from '../common/card'
 
-const store = createStore(todoReducer)
+const store = createStore(
+  todoReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 class BaseRedux extends Component {
   render() {
