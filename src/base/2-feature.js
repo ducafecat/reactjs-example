@@ -68,9 +68,6 @@ class ElementLifecycle extends Component {
     this.date = props.date
     this.state = {date: this.date}
   }
-  componentWillMount() {
-    console.log('componentWillMount 在渲染前调用')
-  }
   componentDidMount() {
     console.log('componentDidMount 在第一次渲染后调用')
     if (this.date !== undefined) {
@@ -82,12 +79,6 @@ class ElementLifecycle extends Component {
       // })
     }
   }
-  componentWillReceiveProps(nextProps) {
-    console.log(
-      'componentWillReceiveProps 在组件接收到一个新的 prop (更新后)时被调用',
-      nextProps
-    )
-  }
   shouldComponentUpdate(nextProps, nextState) {
     console.log(
       'shouldComponentUpdate 在组件接收到新的props或者state时被调用',
@@ -95,13 +86,6 @@ class ElementLifecycle extends Component {
       nextState
     )
     return true // 返回一个布尔值
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log(
-      'componentWillUpdate 在组件接收到新的props或者state但还没有render时被调用',
-      nextProps,
-      nextState
-    )
   }
   componentDidUpdate(prevProps, prevState) {
     console.log(
@@ -115,6 +99,78 @@ class ElementLifecycle extends Component {
   }
   render() {
     return <p>时间 => {this.state.date.toLocaleString()}</p>
+  }
+}
+
+// v16.x 生命周期 - getDerivedStateFromProps
+class ElementLifecycleNew extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(
+      'getDerivedStateFromProps 组件实例化后和接受新属性时将会调用',
+      nextProps,
+      prevState
+    )
+    // return null // 无需改变 返回 null
+    return {
+      date: new Date('2011-11-11 11:11:11')
+    }
+  }
+  render() {
+    return <p>{this.state.date.toLocaleString()}</p>
+  }
+}
+
+// v16.x 生命周期 - getSnapshotBeforeUpdate + componentDidUpdate
+class ElementLifecycleNew2 extends Component {
+  listRef = React.createRef()
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: props.date
+    }
+  }
+  componentDidMount() {
+    console.log('componentDidMount')
+    this.setState({date: new Date('2011-11-22 22:22:22')})
+  }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('getSnapshotBeforeUpdate', prevProps, prevState, this.state)
+    return {
+      offset: 80
+    }
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('componentDidUpdate', snapshot)
+    this.listRef.current.style.top = `${snapshot.offset}px`
+  }
+  render() {
+    return (
+      <div
+        style={{
+          height: 200,
+          width: 150,
+          backgroundColor: 'blue',
+          position: 'relative',
+          color: '#fff'
+        }}
+      >
+        <p>{this.state.date.toLocaleString()}</p>
+        <div
+          ref={this.listRef}
+          style={{
+            height: 20,
+            width: 150,
+            backgroundColor: 'red',
+            top: 0,
+            position: 'absolute'
+          }}
+        />
+      </div>
+    )
   }
 }
 
@@ -175,6 +231,12 @@ class Features extends Component {
         </Card>
         <Card title="Lifecycle">
           <ElementLifecycle date={new Date('2006-06-06 06:06:06')} />
+        </Card>
+        <Card title="v16.x 生命周期 - getDerivedStateFromProps">
+          <ElementLifecycleNew date={new Date('2009-09-09 09:09:09')} />
+        </Card>
+        <Card title="v16.x 生命周期 - getSnapshotBeforeUpdate + componentDidUpdate">
+          <ElementLifecycleNew2 date={new Date('2009-09-09 09:09:09')} />
         </Card>
         <Card title="Event">
           <InputView />
